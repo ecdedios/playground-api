@@ -2,9 +2,12 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        return request.data
+    else:
+        return "Hello, stranger."
 
 if __name__ == '__main__':
     import waitress
